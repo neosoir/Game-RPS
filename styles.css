@@ -104,13 +104,15 @@ header > h1
     background: #e5950e; /*revisar*/
 }
 
-#action-message
+.play_again 
 {
-    text-align: center;
+    display: flex;
+    justify-content: center;
     color: #e5950e;
     font-family: Asap, sans-serif;
     font-size: 20px;
     font-weight: bold;
+    text-decoration: none;
 }
 
 /*Colores depediendo del resultado*/

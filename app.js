@@ -8,6 +8,7 @@ const machineScore_span = document.getElementById("machine-score");
 
 const scoreBoard_div = document.querySelector(".score-board");
 const result_p = document.querySelector(".result > p");
+const play_again = document.querySelector(".play_again");
 
 const rock_div = document.getElementById('r');
 const paper_div = document.getElementById("p");
@@ -42,9 +43,12 @@ function win(userChoice, machineChoice)
 
     userScore++;
     userScore_span.innerHTML = userScore;
-    machineScore_span.innerHTML =machineScore;
+    machineScore_span.innerHTML = machineScore;
 
     result_p.innerHTML = convertToWord(userChoice) + smallUserWord + " beats " + convertToWord(machineChoice) + smallmachineWord + "<br> You win!!";
+
+    //Volver a jugar
+    play_again.innerHTML = "Restart Game";
 
     //Temparalizador para el efecto "Colores depediendo del resultado" css
     userColorWin.classList.add('green-glow');
@@ -59,10 +63,13 @@ function lose(userChoice, machineChoice)
 
     machineScore++;
     userScore_span.innerHTML = userScore;
-    machineScore_span.innerHTML =machineScore;
+    machineScore_span.innerHTML = machineScore;
 
     result_p.innerHTML = convertToWord(userChoice) + smallUserWord + " beats " + convertToWord(machineChoice) + smallmachineWord + "<br> You lost...";
 
+    //Volver a jugar
+    play_again.innerHTML = "Restart Game";
+    
     userColorLose.classList.add('red-glow');
     setTimeout(() => userColorLose.classList.remove('red-glow'), 1000);
 }
@@ -75,6 +82,9 @@ function draw(userChoice, machineChoice)
 
     result_p.innerHTML = convertToWord(userChoice) + smallUserWord + " equals " + convertToWord(machineChoice) + smallmachineWord + "<br> It's draw";
 
+    //Volver a jugar
+    play_again.innerHTML = "Restart Game";
+    
     userColorDraw.classList.add('gray-glow');
     setTimeout(() => userColorDraw.classList.remove('gray-glow'), 1000);
 }
