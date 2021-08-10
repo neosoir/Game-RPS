@@ -104,7 +104,18 @@ header > h1
     background: #e5950e; /*revisar*/
 }
 
-.play_again 
+.play_again > p
+{
+    text-align: center;
+    justify-content: center;
+    color: #e5950e;
+    font-family: Asap, sans-serif;
+    font-size: 20px;
+    font-weight: bold;
+    margin: 50px;
+}
+
+.play_again > a
 {
     display: flex;
     justify-content: center;
@@ -113,7 +124,14 @@ header > h1
     font-size: 20px;
     font-weight: bold;
     text-decoration: none;
+    margin: 50px;
 }
+
+.play_again > a:hover
+{
+    font-size: 25px;
+}
+
 
 /*Colores depediendo del resultado*/
 
