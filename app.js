@@ -1,10 +1,10 @@
 //Poner todos estos resultados en la memoria del dom
 
 let userScore = 0;
-let computerScore = 0;
+let machineScore = 0;
 
 const userScore_span = document.getElementById("user-score");
-const computerScore_span = document.getElementById("computer-score"); 
+const machineScore_span = document.getElementById("machine-score"); 
 
 const scoreBoard_div = document.querySelector(".score-board");
 const result_p = document.querySelector(".result > p");
@@ -15,7 +15,7 @@ const scissors_div = document.getElementById("s");
 
 //Evento Aleatorio para la machine
 
-function getComputerChoice()
+function getmachineChoice()
 {
     const choices = ['r', 'p', 's'];
     const randomNumber = Math.floor(Math.random() * 3);
@@ -33,60 +33,74 @@ function convertToWord(letter)
     return "Scissors";
 }
 
-function win(userChoice, computerChoice)
+function win(userChoice, machineChoice)
 {
+    const smallUserWord = "Human".fontsize(3).sub();
+    const smallmachineWord = "Machine".fontsize(3).sub();
+    const userColorWin = document.getElementById(userChoice);
+    
+
     userScore++;
     userScore_span.innerHTML = userScore;
-    computerScore_span.innerHTML =computerScore;
+    machineScore_span.innerHTML =machineScore;
 
-    const smallUserWord = "Human".fontsize(3).sub();
-    const smallComputerWord = "Machine".fontsize(3).sub();
+    result_p.innerHTML = convertToWord(userChoice) + smallUserWord + " beats " + convertToWord(machineChoice) + smallmachineWord + "<br> You win!!";
 
-    result_p.innerHTML = convertToWord(userChoice) + smallUserWord + " beats " + convertToWord(computerChoice) + smallComputerWord + "<br> You win!!";
+    //Temparalizador para el efecto "Colores depediendo del resultado" css
+    userColorWin.classList.add('green-glow');
+    setTimeout(() => userColorWin.classList.remove('green-glow'), 1000);
 }
 
-function lose(userChoice, computerChoice)
+function lose(userChoice, machineChoice)
 {
-    computerScore++;
+    const smallUserWord = "Human".fontsize(3).sub();
+    const smallmachineWord = "Machine".fontsize(3).sub();
+    const userColorLose = document.getElementById(userChoice);
+
+    machineScore++;
     userScore_span.innerHTML = userScore;
-    computerScore_span.innerHTML =computerScore;
+    machineScore_span.innerHTML =machineScore;
 
-    const smallUserWord = "Human".fontsize(3).sub();
-    const smallComputerWord = "Machine".fontsize(3).sub();
+    result_p.innerHTML = convertToWord(userChoice) + smallUserWord + " beats " + convertToWord(machineChoice) + smallmachineWord + "<br> You lost...";
 
-    result_p.innerHTML = convertToWord(userChoice) + smallUserWord + " beats " + convertToWord(computerChoice) + smallComputerWord + "<br> You lost... ";
+    userColorLose.classList.add('red-glow');
+    setTimeout(() => userColorLose.classList.remove('red-glow'), 1000);
 }
 
-function draw(userChoice, computerChoice)
+function draw(userChoice, machineChoice)
 {
     const smallUserWord = "Human".fontsize(3).sub();
-    const smallComputerWord = "Machine".fontsize(3).sub();
+    const smallmachineWord = "Machine".fontsize(3).sub();
+    const userColorDraw = document.getElementById(userChoice);
 
-    result_p.innerHTML = convertToWord(userChoice) + smallUserWord + " equals " + convertToWord(computerChoice) + smallComputerWord + "<br> It's draw";
+    result_p.innerHTML = convertToWord(userChoice) + smallUserWord + " equals " + convertToWord(machineChoice) + smallmachineWord + "<br> It's draw";
+
+    userColorDraw.classList.add('gray-glow');
+    setTimeout(() => userColorDraw.classList.remove('gray-glow'), 1000);
 }
 
     //Funcion de procesamiento de datos
 
 function game(userChoice)
 {
-    const computerChoice = getComputerChoice();
+    const machineChoice = getmachineChoice();
   
-    switch (userChoice + computerChoice)
+    switch (userChoice + machineChoice)
     {
         case "sp":
         case "rs":
         case "pr":
-            win(userChoice, computerChoice);
+            win(userChoice, machineChoice);
             break;
         case "sr":
         case "rp":
         case "ps":
-            lose(userChoice, computerChoice);
+            lose(userChoice, machineChoice);
             break;
         case "rr":
         case "pp":
         case "ss":
-            draw(userChoice, computerChoice);
+            draw(userChoice, machineChoice);
             break;    
     }
 }
@@ -96,17 +110,9 @@ function game(userChoice)
 
 function main()
 {
-    rock_div.addEventListener('click', function(){
-        game("r")
-    })
-    
-    paper_div.addEventListener('click', function(){
-        game("p")
-    })
-    
-    scissors_div.addEventListener('click', function(){
-        game("s")
-    })
+    rock_div.addEventListener('click', () => game("r")); 
+    paper_div.addEventListener('click', () => game("p"));
+    scissors_div.addEventListener('click', () => game("s"));
 }
 
 main();
