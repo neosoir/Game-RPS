@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Asap:wght@500;700&display=swap');
 
+/*Quitar los estilos pordefecto de navegador*/
 *
 {
     margin: 0;
@@ -40,6 +41,7 @@ header > h1
     padding: 15px 20px;
     font-family: Asap, sans-serif;
     position: relative;
+    bottom: 50%;
 }
 
 .badge
